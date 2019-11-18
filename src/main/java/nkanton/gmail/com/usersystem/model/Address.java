@@ -9,7 +9,8 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "address")
+@Entity
+//@Table(name = "address", schema = "postgres")
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,5 +19,8 @@ public class Address {
     private String address;
     private String city;
     private Integer postalCode;
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 }
 

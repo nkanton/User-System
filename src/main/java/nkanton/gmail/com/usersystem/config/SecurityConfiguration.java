@@ -1,7 +1,9 @@
 package nkanton.gmail.com.usersystem.config;
 
+import nkanton.gmail.com.usersystem.service.DetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -20,10 +22,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final TokenProvider tokenProvider;
 
+    private DetailsService detailsService;
+
     private final CorsFilter corsFilter;
 
-    public SecurityConfiguration(TokenProvider tokenProvider, CorsFilter corsFilter) {
+    public SecurityConfiguration(TokenProvider tokenProvider, DetailsService detailsService, CorsFilter corsFilter) {
         this.tokenProvider = tokenProvider;
+        this.detailsService = detailsService;
         this.corsFilter = corsFilter;
     }
 
@@ -45,7 +50,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        // @formatter:off
         http
                 .csrf().disable()
                 .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class).exceptionHandling()
@@ -61,18 +65,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/authenticate").permitAll()
                 .antMatchers("/api/register").permitAll()
-                .antMatchers("/api/activate").permitAll()
                 .antMatchers("/api/**").authenticated()
                 .and()
                 .httpBasic()
                 .and()
                 .apply(securityConfigurerAdapter());
-        // @formatter:on
     }
 
     private JWTConfigurer securityConfigurerAdapter() {
         return new JWTConfigurer(tokenProvider);
     }
 
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(detailsService);
+    }
 
 }
