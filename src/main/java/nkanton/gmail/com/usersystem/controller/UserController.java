@@ -2,12 +2,10 @@ package nkanton.gmail.com.usersystem.controller;
 
 import nkanton.gmail.com.usersystem.model.dto.UserDTO;
 import nkanton.gmail.com.usersystem.service.interfaces.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-@RestController("/api/user")
+@RestController
+@RequestMapping("/api/user")
 public class UserController {
 
     private UserService userService;
