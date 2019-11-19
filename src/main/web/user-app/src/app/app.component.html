@@ -28,12 +28,12 @@
             <span>Sign in</span>
           </a>
         </li>
-        <li *ngSwitchCase="false">
+        <li *ngSwitchCase="true">
           <a  routerLink="info" routerLinkActive="active" (click)="closeSideBar()" id="info">
             <span>User info</span>
           </a>
         </li>
-        <li *ngSwitchCase="false">
+        <li *ngSwitchCase="true">
           <a  routerLink="create" routerLinkActive="active" (click)="closeSideBar()"
              id="create">
             <span>Create user</span>

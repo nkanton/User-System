@@ -4,6 +4,7 @@ import nkanton.gmail.com.usersystem.config.JWTFilter;
 import nkanton.gmail.com.usersystem.config.TokenProvider;
 import nkanton.gmail.com.usersystem.model.dto.JWTokenDTO;
 import nkanton.gmail.com.usersystem.model.dto.LoginDTO;
+import nkanton.gmail.com.usersystem.model.dto.UserDTO;
 import nkanton.gmail.com.usersystem.model.dto.UserRegisterDTO;
 import nkanton.gmail.com.usersystem.service.interfaces.UserService;
 import org.springframework.http.HttpHeaders;
@@ -39,6 +40,7 @@ public class AccountController {
         userService.registerUser(userRegisterDTO, userRegisterDTO.getPassword());
     }
 
+    @CrossOrigin
     @PostMapping("/authenticate")
     public ResponseEntity<JWTokenDTO> authorize(@Valid @RequestBody LoginDTO loginDto) {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
@@ -50,5 +52,11 @@ public class AccountController {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(JWTFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
         return new ResponseEntity<>(new JWTokenDTO(jwt), httpHeaders, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping("/account")
+    public UserDTO getAccount() {
+        return userService.getCurrentUser();
     }
 }

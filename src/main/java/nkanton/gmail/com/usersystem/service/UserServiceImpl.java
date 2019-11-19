@@ -8,8 +8,13 @@ import nkanton.gmail.com.usersystem.model.dto.UserDTO;
 import nkanton.gmail.com.usersystem.model.dto.UserRegisterDTO;
 import nkanton.gmail.com.usersystem.repository.UserRepository;
 import nkanton.gmail.com.usersystem.service.interfaces.UserService;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -54,5 +59,25 @@ public class UserServiceImpl implements UserService {
         newUser.setPassword(encryptedPassword);
         newUser.setEmail(userRegisterDTO.getEmail().toLowerCase());
         userRepository.save(newUser);
+    }
+
+    @Override
+    public UserDTO getCurrentUser() {
+        return getCurrentUserLogin().flatMap(userRepository::findUserByUserName).map(userMapper::toDTO)
+                .orElseThrow(() -> new RuntimeException("User could not be found"));
+    }
+
+    public static Optional<String> getCurrentUserLogin() {
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        return Optional.ofNullable(securityContext.getAuthentication())
+                .map(authentication -> {
+                    if (authentication.getPrincipal() instanceof UserDetails) {
+                        UserDetails springSecurityUser = (UserDetails) authentication.getPrincipal();
+                        return springSecurityUser.getUsername();
+                    } else if (authentication.getPrincipal() instanceof String) {
+                        return (String) authentication.getPrincipal();
+                    }
+                    return null;
+                });
     }
 }
