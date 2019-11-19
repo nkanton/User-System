@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <div ng-sidebar-content>
+        <button (click)="_toggleSidebar()" class="btn btn-primary btn-outline-light"></button>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="home">HOME</a>
+    </li>
+  </ul>
+</nav>
+<ng-sidebar-container style="height: 100vh;">
+  <ng-sidebar [(opened)]="_opened">
+    <div class="sidebar-container"  [ngSwitch]="isAuthenticated()">
+      <div class="sidebar-logo">
+        User System
+      </div>
+      <ul class="sidebar-navigation">
+        <li class="header">Navigation</li>
+        <li *ngSwitchCase="true">-->
+          <a (click)="logout()" id="logout">
+            <span>Sign out</span>
+          </a>
+        </li>
+        <li *ngSwitchCase="false">
+          <a (click)="login()" id="login">
+            <span>Sign in</span>
+          </a>
+        </li>
+        <li *ngSwitchCase="false">
+          <a  routerLink="info" routerLinkActive="active" (click)="closeSideBar()" id="info">
+            <span>User info</span>
+          </a>
+        </li>
+        <li *ngSwitchCase="false">
+          <a  routerLink="create" routerLinkActive="active" (click)="closeSideBar()"
+             id="create">
+            <span>Create user</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </ng-sidebar>
+</ng-sidebar-container>
+
+
+
+
+<router-outlet></router-outlet>
