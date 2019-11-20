@@ -12,13 +12,17 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {AuthInterceptor} from "./interceptor/auth.interceptor";
 import {AuthExpiredInterceptor} from "./interceptor/auth-expired.interceptor";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {HomeComponent} from "./home/home.component";
+import {InfoComponent} from "./info/info.component";
+import {CreateModule} from "./create/create.module";
 
 
 @NgModule({
   declarations: [
-    AppComponent, FooterComponent, LoginModalComponent
+    AppComponent, FooterComponent, LoginModalComponent, HomeComponent, InfoComponent
   ],
   imports: [
+    CreateModule,
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
@@ -38,7 +42,8 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
       useClass: AuthExpiredInterceptor,
       multi: true
     }],
-  bootstrap: [AppComponent],entryComponents:[LoginModalComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [LoginModalComponent]
 })
 export class AppModule {
 }

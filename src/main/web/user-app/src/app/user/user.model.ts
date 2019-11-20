@@ -1,13 +1,20 @@
 import {Address} from "./address.model";
 
 export class User {
-  constructor(
-    public userName: string,
-    public id?: any,
-    public firstName?: string,
-    public lastName?: string,
-    public email?: string,
-    public addresses?:Address[]
-  ) {
+  public id: any;
+  public userName: string;
+  public firstName: string;
+  public lastName: string;
+  public password: string;
+  public email: string;
+  public addresses: Array<Address>;
+
+  constructor(obj) {
+    this.id = obj && obj.id || null;
+    this.userName = obj && obj.userName || null;
+    this.firstName = obj && obj.firstName || null;
+    this.lastName = obj && obj.lastName || null;
+    this.password = obj && obj.password || null;
+    this.email = obj && obj.email || null;
   }
 }

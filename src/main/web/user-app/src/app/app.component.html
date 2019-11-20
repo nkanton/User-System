@@ -1,8 +1,8 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark">
+<nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
   <ul class="navbar-nav mr-auto">
     <li class="nav-item">
       <div ng-sidebar-content>
-        <button (click)="_toggleSidebar()" class="btn btn-primary btn-outline-light"></button>
+        <button class="btn btn-primary btn-outline-light" data-toggle="collapse" data-target=".sidebar"></button>
       </div>
     </li>
     <li class="nav-item">
@@ -10,41 +10,46 @@
     </li>
   </ul>
 </nav>
-<ng-sidebar-container style="height: 100vh;">
-  <ng-sidebar [(opened)]="_opened">
-    <div class="sidebar-container"  [ngSwitch]="isAuthenticated()">
+<aside class="col-1 col-sm-2 p-0 bg-inverse collapse show sidebar fade fixed-top h-100">
+  <nav class="navbar navbar-toggleable-xl navbar-inverse bg-inverse flex-column align-items-start">
+    <div class="collapse show navbar-collapse sidebar" [ngSwitch]="isAuthenticated()">
       <div class="sidebar-logo">
         User System
       </div>
-      <ul class="sidebar-navigation">
-        <li class="header">Navigation</li>
-        <li *ngSwitchCase="true">-->
+      <ul class="flex-column navbar-nav sidebar-navigation">
+        <li class="nav-item" class="header">Navigation</li>
+        <li class="nav-item" *ngSwitchCase="true">-->
           <a (click)="logout()" id="logout">
             <span>Sign out</span>
           </a>
         </li>
-        <li *ngSwitchCase="false">
+        <li class="nav-item" *ngSwitchCase="false">
           <a (click)="login()" id="login">
             <span>Sign in</span>
           </a>
         </li>
-        <li *ngSwitchCase="true">
-          <a  routerLink="info" routerLinkActive="active" (click)="closeSideBar()" id="info">
+        <li class="nav-item" *ngSwitchCase="true">
+          <a routerLink="info" routerLinkActive="active" (click)="closeSideBar()" id="info">
             <span>User info</span>
           </a>
         </li>
-        <li *ngSwitchCase="true">
-          <a  routerLink="create" routerLinkActive="active" (click)="closeSideBar()"
+        <li class="nav-item" *ngSwitchCase="true">
+          <a routerLink="create" routerLinkActive="create/user" (click)="closeSideBar()"
              id="create">
             <span>Create user</span>
           </a>
         </li>
       </ul>
     </div>
-  </ng-sidebar>
-</ng-sidebar-container>
+  </nav>
+</aside>
+<div ng-sidebar-content>
+  <main class="container">
+    <div class="col col-md-12">
+    <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>
 
 
 
-
-<router-outlet></router-outlet>

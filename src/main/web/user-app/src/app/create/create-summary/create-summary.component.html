@@ -1,0 +1,23 @@
+<div class="container">
+  <h1 style="text-align: center">Summary</h1>
+  <div class="row justify-content-md-center">
+    <ul class="list-group">
+      <li class="list-group-item">User Name: {{user.userName}}</li>
+      <li class="list-group-item">First Name: {{user.firstName}}</li>
+      <li class="list-group-item">Last Name: {{user.lastName}}</li>
+      <!--  <li class="list-group-item">{{user.password}}</li>-->
+      <li class="list-group-item">Email: {{user.email}}</li>
+    </ul>
+  </div>
+  <h3 style="text-align: center">Addresses:</h3>
+  <div class="row justify-content-md-center" *ngFor="let address of user.addresses">
+    <ul class="list-group">
+      <li class="list-group-item">Type: {{address.type}}</li>
+      <li class="list-group-item">City: {{address.city}}</li>
+      <li class="list-group-item">Address: {{address.address}}</li>
+      <li class="list-group-item">Postal Code: {{address.postalCode}}</li>
+    </ul>
+  </div>
+  <button type="button" (click)="save()" class="btn btn-primary">SAVE</button>
+  <button type="button" (click)="cancel()" class="btn btn-primary">CANCEL</button>
+</div>
