@@ -37,7 +37,7 @@ public class AccountController {
     @ResponseStatus(HttpStatus.CREATED)
     public void registerUser(@Valid @RequestBody UserRegisterDTO userRegisterDTO) {
 
-        userService.registerUser(userRegisterDTO, userRegisterDTO.getPassword());
+        userService.registerUser(userRegisterDTO);
     }
 
     @CrossOrigin

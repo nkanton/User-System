@@ -2,7 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {KEY_ADDRESS, KEY_USER} from "../../app.constants";
 import {SessionStorageService} from "ngx-webstorage";
 import {User} from "../../user/user.model";
-import {Address} from "../../user/address.model";
+import {Address} from "../../address/address.model";
+import {UserService} from "../../user/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-create-summury',
@@ -14,7 +16,9 @@ export class CreateSummaryComponent implements OnInit {
 
 
   constructor(
-    private sessionStorage: SessionStorageService
+    private sessionStorage: SessionStorageService,
+    private userService: UserService,
+    private router: Router
   ) {
   }
 
@@ -32,11 +36,22 @@ export class CreateSummaryComponent implements OnInit {
   }
 
   cancel() {
+    this.clearStorage();
+    this.router.navigateByUrl("home");
+  }
+
+  save() {
+    this.userService.create(this.user).subscribe(() => {
+      this.clearStorage();
+      this.router.navigateByUrl("home");
+    })
+  }
+  private clearStorage(){
     this.sessionStorage.clear(KEY_USER);
     this.sessionStorage.clear(KEY_ADDRESS);
   }
 
-  save() {
-
+  back() {
+    this.router.navigateByUrl("create/address");
   }
 }

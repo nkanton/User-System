@@ -13,5 +13,6 @@ public class AddressDTO {
     private String address;
     private String city;
     private Integer postalCode;
+    private Long userId;
 }
 

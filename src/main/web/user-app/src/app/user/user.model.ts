@@ -1,4 +1,4 @@
-import {Address} from "./address.model";
+import {Address} from "../address/address.model";
 
 export class User {
   public id: any;
@@ -7,6 +7,7 @@ export class User {
   public lastName: string;
   public password: string;
   public email: string;
+  public phoneNumber: any;
   public addresses: Array<Address>;
 
   constructor(obj) {
@@ -16,5 +17,6 @@ export class User {
     this.lastName = obj && obj.lastName || null;
     this.password = obj && obj.password || null;
     this.email = obj && obj.email || null;
+    this.phoneNumber = obj && obj.phoneNumber || null;
   }
 }

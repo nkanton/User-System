@@ -4,6 +4,7 @@ export class Address {
   public address?: string;
   public city?: string;
   public postalCode?: number;
+  public userId: any;
 
   constructor(obj) {
     this.id = obj && obj.id || null;
@@ -11,5 +12,6 @@ export class Address {
     this.address = obj && obj.address || null;
     this.city = obj && obj.city || null;
     this.postalCode = obj && obj.postalCode || null;
+    this.userId = obj && obj.userId || null;
   }
 }

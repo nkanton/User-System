@@ -46,10 +46,10 @@ public class TokenProvider implements InitializingBean {
         long now = (new Date()).getTime();
         Date validity;
         if (rememberMe) {
-            long tokenValidityInMillisecondsForRememberMe = 100000;
+            long tokenValidityInMillisecondsForRememberMe = 1000000000;
             validity = new Date(now + tokenValidityInMillisecondsForRememberMe);
         } else {
-            long tokenValidityInMilliseconds = 100000;
+            long tokenValidityInMilliseconds = 100000000;
             validity = new Date(now + tokenValidityInMilliseconds);
         }
 

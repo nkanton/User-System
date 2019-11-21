@@ -7,7 +7,7 @@ import {StateStorageService} from "../../auth/state-storage.service";
 
 
 @Component({
-  selector: 'jhi-login-modal',
+  selector: 'login-modal',
   templateUrl: './login.component.html'
 })
 export class LoginModalComponent {
@@ -50,14 +50,7 @@ export class LoginModalComponent {
           this.authenticationError = false;
           this.activeModal.dismiss('login success');
           this.router.navigate(['']);
-
-          // previousState was set in the authExpiredInterceptor before being redirected to login modal.
-          // since login is successful, go to stored previousState and clear previousState
-          const redirect = this.stateStorageService.getUrl();
-          if (redirect) {
-            this.stateStorageService.storeUrl(null);
-            this.router.navigateByUrl(redirect);
-          }
+          this.router.navigateByUrl("home");
         },
         () => (this.authenticationError = true)
       );

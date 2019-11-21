@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+  <div class="col-md-10">
+    <form-user [registerForm]="searchForm" [withPassword]="false"></form-user>
+    <button type="button" (click)="clear()" class="btn btn-primary">CLEAR</button>
+    <button type="button" (click)="search()" [disabled]="searchForm.invalid" class="btn btn-primary">SEARCH</button>
+  </div>
+</div>
+<div *ngFor="let user of users">
+  <div class="row">
+    <div class="card col-md-12">
+      <div class="card-body">
+        <div class="row">
+          <div class="col col-md-2">First Name</div>
+          <div class="col col-md-2">Last Name</div>
+          <div class="col col-md-2">User Name</div>
+          <div class="col col-md-2">Email</div>
+          <div class="col col-md-2">Phone</div>
+          <div class="col col-md-1">Update</div>
+          <div class="col col-md-1">Delete</div>
+        </div>
+        <div class="row">
+          <div class="col col-md-2">{{user.firstName}}</div>
+          <div class="col col-md-2">{{user.lastName}}</div>
+          <div class="col col-md-2">{{user.userName}}</div>
+          <div class="col col-md-2">{{user.email}}</div>
+          <div class="col col-md-2">{{user.phoneNumber}}</div>
+          <div class="col col-md-1"><button (click)="updateUser(user)" type="button" class="btn btn-primary">UPDATE</button></div>
+          <div class="col col-md-1"><button (click)="deleteUser(user)" type="button" class="btn btn-danger">DELETE</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="row">
+      <div class="card col-md-12">
+        <div class="card-body">
+          <div class="row">
+            <div class="col col-md-2">Type</div>
+            <div class="col col-md-2">City</div>
+            <div class="col col-md-2">Address</div>
+            <div class="col col-md-2">Postal Code</div>
+            <div class="col col-md-2">Update</div>
+            <div class="col col-md-2">Delete</div>
+          </div>
+          <div class="row"  *ngFor="let address of user.addresses">
+            <div class="col col-md-2">{{address.type}}</div>
+            <div class="col col-md-2">{{address.city}}</div>
+            <div class="col col-md-2">{{address.address}}</div>
+            <div class="col col-md-2">{{address.postalCode}}</div>
+            <div class="col col-md-2"><button (click)="updateAddress(address)" type="button" class="btn btn-primary">UPDATE</button></div>
+            <div class="col col-md-2"><button (click)="deleteAddress(user, address)" type="button" class="btn btn-danger">DELETE</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,14 +6,19 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {CreateUserComponent} from "./create-user/create-user.component";
 import {CreateAddressComponent} from "./create-address/create-address.component";
 import {CreateSummaryComponent} from "./create-summary/create-summary.component";
+import {AddressComponent} from "../address/address.component";
+import {UserComponent} from "../user/user.component";
 
 @NgModule({
-  declarations: [CreateUserComponent, CreateAddressComponent, CreateSummaryComponent],
+  declarations: [CreateUserComponent, CreateAddressComponent, CreateSummaryComponent, AddressComponent, UserComponent],
   imports: [
     CommonModule,
     CreateRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  entryComponents:[CreateUserComponent, CreateAddressComponent, CreateSummaryComponent]
+  exports: [
+    UserComponent, AddressComponent
+  ],
+  entryComponents: [CreateUserComponent, CreateAddressComponent, CreateSummaryComponent]
 })
 export class CreateModule { }

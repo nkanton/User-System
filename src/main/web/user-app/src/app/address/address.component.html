@@ -1,0 +1,80 @@
+<form name="form" role="form" [formGroup]="form">
+  <div class="form-row">
+    <div class="form-group col">
+      <label class="form-control-label" for="type">Type</label>
+      <input type="text" class="form-control" id="type" name="type" placeholder="type"
+             formControlName="type">
+      <div
+        *ngIf="form.get('type').invalid && (form.get('type').dirty || form.get('type').touched)">
+        <small class="form-text text-danger" *ngIf="form.get('type').errors.required">
+          Type is required.
+        </small>
+        <small class="form-text text-danger" *ngIf="form.get('type').errors.minlength">
+          Type is required to be at least 1 character.
+        </small>
+        <small class="form-text text-danger" *ngIf="form.get('type').errors.maxlength">
+          Type cannot be longer than 50 characters.
+        </small>
+      </div>
+    </div>
+    <div class="form-group col">
+      <label class="form-control-label" for="address">Address</label>
+      <input type="text" class="form-control" id="address" name="address" placeholder="Address"
+             formControlName="address">
+      <div
+        *ngIf="form.get('address').invalid && (form.get('address').dirty || form.get('address').touched)">
+        <small class="form-text text-danger" *ngIf="form.get('address').errors.required">
+          Address is required.
+        </small>
+        <small class="form-text text-danger" *ngIf="form.get('address').errors.invalid">
+          Address is invalid.
+        </small>
+        <small class="form-text text-danger" *ngIf="form.get('address').errors.minlength">
+          Address is required to be at least 5 characters.
+        </small>
+        <small class="form-text text-danger" *ngIf="form.get('address').errors.maxlength">
+          Address cannot be longer than 100 characters.
+        </small>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col">
+      <label class="form-control-label" for="city">city</label>
+      <input type="text" class="form-control" id="city" name="city" placeholder="city"
+             formControlName="city">
+      <div
+        *ngIf="form.get('city').invalid && (form.get('city').dirty || form.get('city').touched)">
+        <small class="form-text text-danger" *ngIf="form.get('city').errors.required">
+          City is required.
+        </small>
+        <small class="form-text text-danger" *ngIf="form.get('city').errors.minlength">
+          City is required to be at least 1 characters.
+        </small>
+        <small class="form-text text-danger" *ngIf="form.get('city').errors.maxlength">
+          City cannot be longer than 50 characters.
+        </small>
+      </div>
+    </div>
+    <div class="form-group col">
+      <label class="form-control-label" for="postalCode">Postal Code</label>
+      <input type="number" class="form-control" id="postalCode" name="postalCode" placeholder="postalCode"
+             formControlName="postalCode">
+      <div
+        *ngIf="form.get('city').invalid && (form.get('postalCode').dirty || form.get('postalCode').touched)">
+        <small class="form-text text-danger" *ngIf="form.get('postalCode').errors.required">
+          Postal Code is required.
+        </small>
+        <small class="form-text text-danger" *ngIf="form.get('postalCode').errors.minlength">
+          Postal Code is required to be at least 5 characters.
+        </small>
+        <small class="form-text text-danger" *ngIf="form.get('postalCode').errors.maxlength">
+          Postal Code cannot be longer than 50 characters.
+        </small>
+        <small class="form-text text-danger" *ngIf="form.get('postalCode').errors.invalid">
+          Postal Code is invalid.
+        </small>
+      </div>
+    </div>
+  </div>
+</form>

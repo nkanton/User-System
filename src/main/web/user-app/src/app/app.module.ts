@@ -15,11 +15,16 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {HomeComponent} from "./home/home.component";
 import {InfoComponent} from "./info/info.component";
 import {CreateModule} from "./create/create.module";
+import { AddressComponent } from './address/address.component';
+import { UserComponent } from './user/user.component';
+import {DeleteComponent} from "./modal/delete/delete.component";
+import {UserEditComponent} from "./modal/user/user-edit.component";
+import {AddressEditComponent} from "./modal/address/address-edit.component";
 
 
 @NgModule({
   declarations: [
-    AppComponent, FooterComponent, LoginModalComponent, HomeComponent, InfoComponent
+    AppComponent, FooterComponent, LoginModalComponent, HomeComponent, InfoComponent, DeleteComponent, UserEditComponent, AddressEditComponent
   ],
   imports: [
     CreateModule,
@@ -43,7 +48,7 @@ import {CreateModule} from "./create/create.module";
       multi: true
     }],
   bootstrap: [AppComponent],
-  entryComponents: [LoginModalComponent]
+  entryComponents: [LoginModalComponent, UserEditComponent, AddressEditComponent, DeleteComponent]
 })
 export class AppModule {
 }
