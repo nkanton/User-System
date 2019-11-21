@@ -34,19 +34,6 @@ export class InfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    let addresses = new Array<Address>();
-    addresses.push(new Address({type: "type", address: "sdfd", postalCode: 4554, city: "sfdsf"}));
-    addresses.push(new Address({type: "type2", address: "sdfd2", postalCode: 45354, city: "sfdsf2"}));
-    let user = new User({
-      id: 1,
-      userName: "name",
-      firstName: "first",
-      lastName: "last",
-      phoneNumber: 1234,
-      email: "asd@sdf",
-    });
-    user.addresses = addresses;
-    this.users.push(user);
   }
 
   search() {
